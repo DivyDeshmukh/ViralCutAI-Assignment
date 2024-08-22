@@ -26,8 +26,13 @@ function TranscriptEditor() {
     }
   }, [duration, totalDuration]);
 
+  useEffect(() => {
+    console.log(transcript);
+    
+  }, [transcript]);
+
   const renderedWords = useMemo(() => {
-    return transcript.map((wordObj, index) => {
+    return transcript?.map((wordObj, index) => {
       const { word, start_time, duration: wordDuration } = wordObj;
       const isHighlighted =
         duration >= start_time &&

@@ -13,7 +13,14 @@ function App() {
       0
     );
     setTotalDuration(duration);
-    setTranscript(initialTranscript);
+
+    if (!localStorage.getItem('transcript')) {
+      setTranscript(initialTranscript) 
+    } 
+    else {
+      setTranscript(JSON.parse(localStorage.getItem('transcript')));
+    }
+    console.log(initialTranscript);
   }, [initialTranscript]);
 
   return (

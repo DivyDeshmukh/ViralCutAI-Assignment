@@ -11,12 +11,12 @@ function Edit({ word, setIsEdit }) {
   });
   const [buttonType, setButtonType] = useState("correct");
   const updateTranscript = (data) => {
-    console.log(data);
+    console.log(transcript);
     if (buttonType === "correct") {
       const updateElemIndex = transcript.findIndex(
         (item) => item.word === word
       );
-      const newTranscript = transcript.map((item, index) => {
+      const newTranscript = transcript?.map((item, index) => {
         if (updateElemIndex === index) {
           item.word = data.word;
         }
@@ -24,8 +24,9 @@ function Edit({ word, setIsEdit }) {
       });
       setTranscript(newTranscript);
       setIsEdit(false);
+      localStorage.setItem("transcript", JSON.stringify(newTranscript));
     } else {
-      const newTranscript = transcript.map((item) => {
+      const newTranscript = transcript?.map((item) => {
         if (item.word === word) {
           item.word = data.word;
         }
@@ -33,6 +34,7 @@ function Edit({ word, setIsEdit }) {
       });
       setTranscript(newTranscript);
       setIsEdit(false);
+      localStorage.setItem("transcript", JSON.stringify(newTranscript));
     }
   };
 
